@@ -10,6 +10,7 @@ import lombok.Data;
 public class Catalog {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int catalog_id;
     private String catalog_name;
     @Enumerated(EnumType.STRING)
