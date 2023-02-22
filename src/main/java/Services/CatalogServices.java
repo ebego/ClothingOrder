@@ -5,6 +5,7 @@ import Entities.Catalog;
 import Enums.Category;
 import Enums.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogServices {
@@ -29,12 +30,15 @@ public class CatalogServices {
     }
     public static Catalog createCatalog() {
         Catalog catalog = new Catalog();
+        List<Catalog> catalogList = new ArrayList<>();
 
         catalog.setCatalog_id(1);
         catalog.setCatalog_name("TShirt");
         catalog.setSize(Size.MEDIUM);
         catalog.setCategory(Category.MAN);
         catalog.setCatalog_price(32.99);
+
+        catalogList.add(catalog);
 
         return catalog;
     }

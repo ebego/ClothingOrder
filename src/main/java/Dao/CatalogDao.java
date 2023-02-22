@@ -41,7 +41,7 @@ public class CatalogDao {
         try {
             tx = session.beginTransaction();
 
-            session.persist(catalog);
+            session.save(catalog);
 
             tx.commit();
         }
