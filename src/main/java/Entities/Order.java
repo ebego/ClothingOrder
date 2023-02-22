@@ -11,13 +11,15 @@ import java.time.LocalDate;
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
     private LocalDate order_date;
     private int order_invoice_number;
 
+    @Column(name = "catalog_id")
+    protected int catalogId;
+
     @ManyToOne
-    @JoinColumn(name = "catalog_id")
+    @JoinColumn(name = "catalog_id", insertable = false, updatable = false)
     private Catalog catalog;
-
-
 }
