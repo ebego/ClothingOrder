@@ -17,7 +17,7 @@ public class OrderItem {
     private double order_totalPrice;
 
     @Column(name = "order_id")
-    private int orderId;
+    protected int orderId;
 
     @ManyToOne
     @JoinColumn(name = "order_id", insertable = false, updatable = false)

@@ -42,7 +42,7 @@ public class OrderItemDao {
         try {
             tx = session.beginTransaction();
 
-            session.save(orderItem);
+            session.persist(orderItem);
 
             tx.commit();
         }

@@ -9,7 +9,7 @@ import java.util.List;
 public class OrderServices {
 
     public static void getOrderByIdService() {
-        int id = 1;
+        int id = 4;
         OrderDao orderDao = new OrderDao();
         Order orderById = orderDao.orderById(id);
 
@@ -30,9 +30,9 @@ public class OrderServices {
     public static Order createOrder() {
         Order order = new Order();
 
-        order.setOrder_id(1);
         order.setOrder_date(LocalDate.of(2000,Month.OCTOBER,5));
         order.setOrder_invoice_number(1);
+        order.setCatalogId(1);
 
         return order;
     }
@@ -46,9 +46,10 @@ public class OrderServices {
     public static Order updateOrderById() {
         Order order = new Order();
 
-        order.setOrder_id(1);
         order.setOrder_date(LocalDate.of(2000,Month.OCTOBER,5));
         order.setOrder_invoice_number(1);
+        order.setCatalogId(1);
+
 
         return order;
     }
@@ -62,7 +63,7 @@ public class OrderServices {
     public static Order deleteOrderById() {
         Order order = new Order();
 
-        order.setOrder_id(1);
+        order.setOrder_id(3);
 
         return order;
     }

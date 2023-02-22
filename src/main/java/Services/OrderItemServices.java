@@ -7,7 +7,7 @@ import java.util.List;
 public class OrderItemServices {
 
     public static void getOrderItemByIdService() {
-        int id = 1;
+        int id = 11;
         OrderItemDao orderItemDao = new OrderItemDao();
         OrderItem orderItemById = orderItemDao.orderItemById(id);
 
@@ -28,11 +28,12 @@ public class OrderItemServices {
     public static OrderItem createOrderItem() {
         OrderItem orderItem = new OrderItem();
 
-        orderItem.setOrderItem_id(1);
+
         orderItem.setCatalog_name("Xhup");
         orderItem.setOrder_quantityOrdered(3);
         orderItem.setCatalog_price(12.49);
         orderItem.setOrder_totalPrice(37.47);
+        orderItem.setOrderId(2);
 
         return orderItem;
     }
@@ -46,11 +47,12 @@ public class OrderItemServices {
     public static OrderItem updateOrderItemById() {
         OrderItem orderItem = new OrderItem();
 
-        orderItem.setOrderItem_id(1);
+
         orderItem.setCatalog_name("Xhup");
         orderItem.setOrder_quantityOrdered(3);
-        orderItem.setCatalog_price(12.49);
-        orderItem.setOrder_totalPrice(37.47);
+        orderItem.setCatalog_price(12.48);
+        orderItem.setOrder_totalPrice(37.44);
+        orderItem.setOrderId(1);
 
         return orderItem;
     }

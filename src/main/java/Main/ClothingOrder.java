@@ -7,17 +7,17 @@ import Services.OrderServices;
 public class ClothingOrder {
     public static void main(String[] args) {
 
-        CatalogServices catalogServices = new CatalogServices();
-        catalogServices.insertCatalog();
-        catalogServices.getByIdService();
+//        CatalogServices catalogServices = new CatalogServices();
+//        catalogServices.insertCatalog();
+//        catalogServices.getByIdService();
 
-        OrderServices orderServices = new OrderServices();
-        orderServices.insertOrder();
-        orderServices.getOrderByIdService();
+//        OrderServices orderServices = new OrderServices();
+//        orderServices.deleteOrder();
+//        orderServices.getOrderByIdService();
 
-        OrderItemServices orderItemServices = new OrderItemServices();
-        orderItemServices.insertOrderItem();
-        orderItemServices.getOrderItemByIdService();
+//        OrderItemServices orderItemServices = new OrderItemServices();
+//        orderItemServices.insertOrderItem();
+//        orderItemServices.getOrderItemByIdService();
 
     }
 
