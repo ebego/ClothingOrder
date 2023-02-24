@@ -22,6 +22,9 @@ public class ClothingOrder {
         else if (userAdminOrClient.equalsIgnoreCase("c")){
             catalogServices.readAllCatalog();
 
+            orderServices.insertOrderForData();
+
+
             orderServices.insertOrder();
 
             orderItemServices.insertOrderItem();

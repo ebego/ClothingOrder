@@ -1,6 +1,7 @@
 package Services;
 
 import Dao.OrderDao;
+import Entities.Catalog;
 import Entities.Order;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -25,6 +26,19 @@ public class OrderServices {
         System.out.println(orders);
     }
 
+
+
+    public static void insertOrderForData() {
+        Order order = createOrderForData();
+        OrderDao orderDao = new OrderDao();
+        orderDao.orderInsert(order);
+    }
+    public static Order createOrderForData() {
+        Order order = new Order();
+        order.setOrder_date(LocalDateTime.now());
+        return order;
+    }
+
     public static void insertOrder() {
         Order order = createOrder();
         OrderDao orderDao = new OrderDao();
@@ -33,9 +47,15 @@ public class OrderServices {
 
     public static Order createOrder() {
         OrderItemServices orderItemServices = new OrderItemServices();
+        OrderDao orderDao = new OrderDao();
 
         Scanner scanner = new Scanner(System.in);
-        Order order = new Order();
+
+
+
+        Order order = orderDao.orderById(createOrderForData().getOrder_id());
+
+
 
         String addToOrder = "yes";
         while (addToOrder.equalsIgnoreCase("yes")) {
@@ -50,10 +70,7 @@ public class OrderServices {
             addToOrder = scanner.nextLine();
 
         }
-
-        order.setOrder_date(LocalDateTime.now());
-        order.setOrder_invoice_number(1000001);
-        System.out.println(order.getOrder_invoice_number());
+        System.out.println(order);
 
         return order;
     }

@@ -1,13 +1,31 @@
 package Services;
 
+import Dao.CatalogDao;
+import Dao.OrderDao;
 import Dao.OrderItemDao;
 import Entities.Catalog;
 import Entities.Order;
 import Entities.OrderItem;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class OrderItemServices {
 
+
+    public static void readAllOrderItem() {
+        OrderItemDao orderItemDao = new OrderItemDao();
+        List<OrderItem> orderItems = orderItemDao.orderItemReadAll();
+        System.out.println(orderItems);
+    }
+
+    public static void getOrderItemByIdService() {
+        int id = 11;
+        OrderItemDao orderItemDao = new OrderItemDao();
+        OrderItem orderItemById = orderItemDao.orderItemById(id);
+
+        System.out.println(orderItemById);
+    }
 
     public static void insertOrderItem() {
 
@@ -18,21 +36,21 @@ public class OrderItemServices {
     }
 
     public static OrderItem createOrderItem() {
-            Order order = new Order();
-            Catalog catalog = new Catalog();
-            OrderItem orderItem = new OrderItem();
-            Scanner scanner = new Scanner(System.in);
+        OrderItem orderItem = new OrderItem();
+        CatalogDao catalogDao = new CatalogDao();
+        Scanner scanner = new Scanner(System.in);
+        OrderServices orderServices = new OrderServices();
 
 
 
              System.out.println("Enter dhe Catalog_Id of the item you want to purchase");
-             catalog.setCatalog_id(scanner.nextInt());
+             Catalog catalog = catalogDao.catalogById(scanner.nextInt());
              System.out.println("Enter how many such items do you want to buy");
              orderItem.setOrder_quantityOrdered(scanner.nextInt());
              orderItem.setCatalog_name(catalog.getCatalog_name());
              orderItem.setCatalog_price(catalog.getCatalog_price());
-             orderItem.setOrder_totalPrice((catalog.getCatalog_price()* order.getOrder_quantityOrdered()));
-             orderItem.setOrderId(1);
+             orderItem.setOrder_totalPrice((orderItem.getCatalog_price()* orderItem.getOrder_quantityOrdered()));
+             orderItem.setOrderId(orderServices.createOrder().getOrder_id());
 
 
         return orderItem;

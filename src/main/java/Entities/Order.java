@@ -3,8 +3,6 @@ package Entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.UUID;
 
 
 @Data
@@ -16,10 +14,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
     private LocalDateTime order_date;
-
-    private int order_quantityOrdered;
-
-    private int order_invoice_number;
 
 
 
@@ -35,7 +29,6 @@ public class Order {
         return "Order{" +
                 "order_id=" + order_id +
                 ", order_date='" + order_date + '\'' +
-                ", order_quantityOrdered='" + order_quantityOrdered + '\'' +
                 '}' + '\n';
     }
 }
