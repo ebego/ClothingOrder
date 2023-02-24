@@ -2,10 +2,8 @@ package Services;
 
 import Dao.OrderDao;
 import Entities.Order;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class OrderServices {
 
@@ -34,30 +32,28 @@ public class OrderServices {
     }
 
     public static Order createOrder() {
-
+        OrderItemServices orderItemServices = new OrderItemServices();
 
         Scanner scanner = new Scanner(System.in);
         Order order = new Order();
 
-
         String addToOrder = "yes";
         while (addToOrder.equalsIgnoreCase("yes")) {
 
-            System.out.println("Enter dhe Catalog_Id of the item you want to purchase");
-            order.setCatalogId(scanner.nextInt());
-            System.out.println("Enter how many such items do you want to buy");
-            order.setOrder_quantityOrdered(scanner.nextInt());
-            order.setOrder_invoice_number(100000);
+
+
+        orderItemServices.insertOrderItem();
 
 
 
             System.out.println("Do you want to add Items to your order? Press yes to continue or anything else to stop");
-            scanner.nextLine();
             addToOrder = scanner.nextLine();
 
         }
 
         order.setOrder_date(LocalDateTime.now());
+        order.setOrder_invoice_number(1000001);
+        System.out.println(order.getOrder_invoice_number());
 
         return order;
     }

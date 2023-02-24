@@ -68,6 +68,8 @@ public class CatalogServices {
     public static void readAllCatalog() {
         CatalogDao catalogDao = new CatalogDao();
         List<Catalog> catalogs = catalogDao.catalogReadAll();
+        System.out.println("This is our Catalog. You can chose anything you like : ");
+
         System.out.println(catalogs);
     }
 
@@ -84,10 +86,10 @@ public class CatalogServices {
 
         System.out.println("Enter Catalog Item Name");
         catalog.setCatalog_name(scanner.nextLine());
-        System.out.println("Enter Catalog Item Category (in capital letters) ");
-        catalog.setCategory(Category.valueOf(scanner.nextLine()));
-        System.out.println("Enter Catalog Item Size (in capital letters) ");
-        catalog.setSize(Size.valueOf(scanner.nextLine()));
+        System.out.println("Enter Catalog Item Category (Man/Woman/Kids)");
+        catalog.setCategory(Category.valueOf(scanner.nextLine().toUpperCase()));
+        System.out.println("Enter Catalog Item Size (Extralarge/Large/Medium/Small/Extrasmall) ");
+        catalog.setSize(Size.valueOf(scanner.nextLine().toUpperCase()));
         System.out.println("Enter Catalog Item Price");
         catalog.setCatalog_price(scanner.nextDouble());
 

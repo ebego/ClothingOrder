@@ -24,16 +24,12 @@ public class ClothingOrder {
 
             orderServices.insertOrder();
 
+            orderItemServices.insertOrderItem();
+
         }
         else {
             System.out.println("You have entered an invalid answer.");
         }
-
-
-
-
-        orderItemServices.insertOrderItem();
-
 
 
 

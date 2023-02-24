@@ -1,13 +1,9 @@
 package Services;
 
-import Dao.OrderDao;
 import Dao.OrderItemDao;
 import Entities.Catalog;
 import Entities.Order;
 import Entities.OrderItem;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class OrderItemServices {
@@ -25,13 +21,19 @@ public class OrderItemServices {
             Order order = new Order();
             Catalog catalog = new Catalog();
             OrderItem orderItem = new OrderItem();
+            Scanner scanner = new Scanner(System.in);
 
 
-            orderItem.setCatalog_name(catalog.getCatalog_name());
-            orderItem.setOrder_quantityOrdered(order.getOrder_quantityOrdered());
-            orderItem.setCatalog_price(catalog.getCatalog_price());
-            orderItem.setOrder_totalPrice((catalog.getCatalog_price()* order.getOrder_quantityOrdered()));
-            orderItem.setOrderId(2);
+
+             System.out.println("Enter dhe Catalog_Id of the item you want to purchase");
+             catalog.setCatalog_id(scanner.nextInt());
+             System.out.println("Enter how many such items do you want to buy");
+             orderItem.setOrder_quantityOrdered(scanner.nextInt());
+             orderItem.setCatalog_name(catalog.getCatalog_name());
+             orderItem.setCatalog_price(catalog.getCatalog_price());
+             orderItem.setOrder_totalPrice((catalog.getCatalog_price()* order.getOrder_quantityOrdered()));
+             orderItem.setOrderId(1);
+
 
         return orderItem;
     }

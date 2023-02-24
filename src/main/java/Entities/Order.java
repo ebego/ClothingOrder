@@ -3,6 +3,8 @@ package Entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.UUID;
 
 
 @Data
@@ -20,19 +22,19 @@ public class Order {
     private int order_invoice_number;
 
 
-    @Column(name = "catalog_id")
-    protected int catalogId;
 
-    @ManyToOne
-    @JoinColumn(name = "catalog_id", insertable = false, updatable = false)
-    private Catalog catalog;
+//    @Column(name = "catalog_id")
+//    protected int catalogId;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "catalog_id", insertable = false, updatable = false)
+//    private Catalog catalog;
 
     @Override
     public String toString() {
         return "Order{" +
                 "order_id=" + order_id +
                 ", order_date='" + order_date + '\'' +
-                ", order_invoice_number='" + order_invoice_number + '\'' +
                 ", order_quantityOrdered='" + order_quantityOrdered + '\'' +
                 '}' + '\n';
     }
