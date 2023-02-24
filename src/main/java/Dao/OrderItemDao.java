@@ -10,28 +10,6 @@ import java.util.List;
 
 public class OrderItemDao {
 
-    public void saveOrderItem(OrderItem orderItem){
-
-        SessionFactory sessionFactory = BaseDao.getFactory();
-        Session session = sessionFactory.getCurrentSession();
-        Transaction tx = null;
-
-
-
-        try {
-            tx = session.beginTransaction();
-            session.save(orderItem);
-            tx.commit();
-        }
-        catch (RuntimeException e) {
-            if (tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-    }
     public void orderItemInsert(OrderItem orderItem){
         SessionFactory sessionFactory = BaseDao.getFactory();
         Session session = sessionFactory.getCurrentSession();
@@ -113,7 +91,7 @@ public class OrderItemDao {
         try {
             tx = session.beginTransaction();
 
-            List<OrderItem> orderItems = session.createQuery("select p from Clothing Order p")
+            List<OrderItem> orderItems = session.createQuery("select p from OrderItem p")
                     .getResultList();
 
             tx.commit();

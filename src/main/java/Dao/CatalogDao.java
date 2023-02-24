@@ -1,6 +1,9 @@
 package Dao;
 
 import Entities.Catalog;
+import Enums.Category;
+import Enums.Size;
+import Services.CatalogServices;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,27 +13,6 @@ import java.util.List;
 public class CatalogDao {
 
 
-    public void saveCatalog(Catalog catalog){
-        SessionFactory sessionFactory = BaseDao.getFactory();
-        Session session = sessionFactory.getCurrentSession();
-        Transaction tx = null;
-
-
-
-        try {
-            tx = session.beginTransaction();
-            session.save(catalog);
-            tx.commit();
-        }
-        catch (RuntimeException e) {
-            if (tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-    }
     public void catalogInsert(Catalog catalog){
         SessionFactory sessionFactory = BaseDao.getFactory();
         Session session = sessionFactory.getCurrentSession();
@@ -64,7 +46,20 @@ public class CatalogDao {
         try {
             tx = session.beginTransaction();
 
-            session.merge(catalog);
+//            Catalog catalog = session.get(Catalog.class, id);
+//
+//            catalog.setSize(Size.LARGE);
+//            catalog.setCatalog_name("Trousers");
+//            catalog.setCatalog_price(22.49);
+//            catalog.setCategory(Category.WOMAN);
+//
+//            session.update(catalog);
+
+//            catalog = session.get(Catalog.class, id);
+
+
+            session.update(catalog);
+
 
             tx.commit();
         }
@@ -112,7 +107,7 @@ public class CatalogDao {
         try {
             tx = session.beginTransaction();
 
-            List<Catalog> catalogs = session.createQuery("select p from Clothing Order p")
+            List<Catalog> catalogs = session.createQuery("select p from Catalog p")
                     .getResultList();
 
             tx.commit();

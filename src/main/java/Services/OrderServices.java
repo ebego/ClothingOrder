@@ -3,13 +3,18 @@ package Services;
 import Dao.OrderDao;
 import Entities.Order;
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class OrderServices {
 
+
     public static void getOrderByIdService() {
-        int id = 4;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the catalog_id you want to check : ");
+        int id = scanner.nextInt();
         OrderDao orderDao = new OrderDao();
         Order orderById = orderDao.orderById(id);
 
@@ -27,44 +32,81 @@ public class OrderServices {
         OrderDao orderDao = new OrderDao();
         orderDao.orderInsert(order);
     }
+
     public static Order createOrder() {
+
+
+        Scanner scanner = new Scanner(System.in);
         Order order = new Order();
 
-        order.setOrder_date(LocalDate.of(2000,Month.OCTOBER,5));
-        order.setOrder_invoice_number(1);
-        order.setCatalogId(1);
+
+        String addToOrder = "yes";
+        while (addToOrder.equalsIgnoreCase("yes")) {
+
+            System.out.println("Enter dhe Catalog_Id of the item you want to purchase");
+            order.setCatalogId(scanner.nextInt());
+            System.out.println("Enter how many such items do you want to buy");
+            order.setOrder_quantityOrdered(scanner.nextInt());
+            order.setOrder_invoice_number(100000);
+
+
+
+            System.out.println("Do you want to add Items to your order? Press yes to continue or anything else to stop");
+            scanner.nextLine();
+            addToOrder = scanner.nextLine();
+
+        }
+
+        order.setOrder_date(LocalDateTime.now());
 
         return order;
     }
 
-    public static void updateOrder() {
-        Order order = updateOrderById();
-        OrderDao orderDao = new OrderDao();
-        orderDao.orderUpdate(order);
 
-    }
-    public static Order updateOrderById() {
-        Order order = new Order();
-
-        order.setOrder_date(LocalDate.of(2000,Month.OCTOBER,5));
-        order.setOrder_invoice_number(1);
-        order.setCatalogId(1);
-
-
-        return order;
-    }
-
-    public static void deleteOrder() {
-        Order order = deleteOrderById();
-        OrderDao orderDao = new OrderDao();
-        orderDao.orderDelete(order);
-
-    }
-    public static Order deleteOrderById() {
-        Order order = new Order();
-
-        order.setOrder_id(3);
-
-        return order;
-    }
+//    public static void insertOrder() {
+//        Order order = createOrder();
+//        OrderDao orderDao = new OrderDao();
+//        orderDao.orderInsert(order);
+//    }
+//    public static Order createOrder() {
+//        Order order = new Order();
+//
+//        order.setOrder_date(LocalDate.of(2000,Month.OCTOBER,5));
+//        order.setOrder_invoice_number(1);
+//        order.setCatalogId(1);
+//        order.setOrder_quantityOrdered(3);
+//
+//        return order;
+//    }
+//
+//    public static void updateOrder() {
+//        Order order = updateOrderById();
+//        OrderDao orderDao = new OrderDao();
+//        orderDao.orderUpdate(order);
+//
+//    }
+//    public static Order updateOrderById() {
+//        Order order = new Order();
+//
+//        order.setOrder_date(LocalDate.of(2000,Month.OCTOBER,5));
+//        order.setOrder_invoice_number(1);
+//        order.setCatalogId(1);
+//
+//
+//        return order;
+//    }
+//
+//    public static void deleteOrder() {
+//        Order order = deleteOrderById();
+//        OrderDao orderDao = new OrderDao();
+//        orderDao.orderDelete(order);
+//
+//    }
+//    public static Order deleteOrderById() {
+//        Order order = new Order();
+//
+//        order.setOrder_id(3);
+//
+//        return order;
+//    }
 }
