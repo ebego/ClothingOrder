@@ -3,7 +3,6 @@ package Main;
 import Dao.CatalogDao;
 import Dao.OrderDao;
 import Dao.OrderItemDao;
-import Entities.Order;
 import Entities.OrderItem;
 import Services.CatalogServices;
 import Services.OrderItemServices;
@@ -18,11 +17,9 @@ public class ClothingOrder {
         Scanner scanner = new Scanner(System.in);
         String userAdminOrClient;
         OrderService orderServices = new OrderService(new OrderDao() , new OrderItemDao());
-        OrderItemServices orderItemServices = new OrderItemServices();
+        OrderItemServices orderItemServices = new OrderItemServices(new OrderItemDao() , new CatalogDao());
         CatalogServices catalogServices = new CatalogServices(new CatalogDao());
-        Order order = new Order();
-        OrderItem orderItem = new OrderItem();
-        OrderDao orderDao = new OrderDao();
+
 
 
         System.out.println("Press Adm if you are admin or C if you want to see our catalog: ");
@@ -33,28 +30,50 @@ public class ClothingOrder {
         else if (userAdminOrClient.equalsIgnoreCase("c")){
             catalogServices.readAllCatalog();
 
-            String addToOrder = "yes";
-            List<OrderItem> items = new ArrayList<>();
-            while (addToOrder.equalsIgnoreCase("yes")) {
-                items.add(OrderItemServices.readOrderItemFromConsole());
+            System.out.println("Pres yes if you want to purchase any item or anything else if you want to quit : ");
+            String buyItems = scanner.nextLine();
+            if (buyItems.equalsIgnoreCase("yes")) {
 
-                System.out.println("Do you want to add Items to your order? Press yes to continue or anything else to stop");
-                addToOrder = scanner.nextLine();
-            }
+                String addToOrder = "yes";
+                List<OrderItem> items = new ArrayList<>();
+                while (addToOrder.equalsIgnoreCase("yes")) {
+                    items.add(OrderItemServices.readOrderItemFromConsole());
 
-            int orderId = orderServices.createNewOrder(items);
+                    System.out.println("Do you want to add Items to your order? Press yes to continue or anything else to stop");
+                    addToOrder = scanner.nextLine();
+                }
 
-            System.out.println("The Items you purchased are : ");
+                System.out.println("The Items you purchased are : ");
 
-            orderItemServices.readAllOrderItems();
+                for (OrderItem item : items){
+                    System.out.println(item);
+                }
 
-            System.out.println("Do you confirm your choice? Pres yes to confirm or anything else to cancel : ");
-            String confirmation = scanner.nextLine();
-            if (confirmation.equalsIgnoreCase("yes")){
-                System.out.println("Congratulations on your order ");
+                System.out.println("Do you confirm your choice? Pres yes to confirm or anything else to cancel : ");
+                String confirmation = scanner.nextLine();
+
+                if (confirmation.equalsIgnoreCase("yes")) {
+                    orderServices.createNewOrder(items);
+                    System.out.println("Congratulations on your order ");
+
+                    System.out.println("If you still want to see your order press yes or anything else to exit : ");
+                    String checkOrder = scanner.nextLine();
+                    if (checkOrder.equalsIgnoreCase("yes")){
+                        System.out.println("Enter the id of your order : ");
+                        int idOrder = scanner.nextInt();
+                        orderItemServices.readAllOrderItems(idOrder);
+                        System.out.println("Thanks for your purchase. We hope to see you again.");
+                    }
+                    else {
+                        System.out.println("Thanks for your purchase. We hope to see you again.");
+                    }
+                } else {
+                    System.out.println("Your Order has been canceled.");
+                }
             }
             else {
-                System.out.println("Your Order has been canceled.");
+
+                System.out.println("Thanks for visiting our Catalog. ^_^");
             }
 
         }

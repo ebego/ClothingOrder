@@ -10,22 +10,20 @@ import java.util.Scanner;
 
 public class OrderItemServices {
 
+    private OrderItemDao orderItemDao;
+    private CatalogDao catalogDao;
 
+    public OrderItemServices (OrderItemDao orderItemDao , CatalogDao catalogDao) {
+        this.catalogDao = catalogDao;
+        this.orderItemDao = orderItemDao;
 
-    public static void readAllOrderItems() {
-        OrderItemDao orderItemDao = new OrderItemDao();
-        List<OrderItem> orderItems = orderItemDao.orderItems();
+    }
+
+    public void readAllOrderItems(int orderId) {
+        List<OrderItem> orderItems = orderItemDao.orderItems(orderId);
         System.out.println(orderItems);
     }
 
-
-    public static void getOrderItemByIdService() {
-        int id = 11;
-        OrderItemDao orderItemDao = new OrderItemDao();
-        OrderItem orderItemById = orderItemDao.orderItemById(id);
-
-        System.out.println(orderItemById);
-    }
 
     public static OrderItem readOrderItemFromConsole() {
         OrderItem orderItem = new OrderItem();

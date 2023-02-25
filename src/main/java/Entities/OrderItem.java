@@ -26,12 +26,12 @@ public class OrderItem {
     @Override
     public String toString() {
         return "OrderItem{" +
-                "orderItem_id=" + orderItem_id +
+//                "orderItem_id=" + orderItem_id +
                 ", catalog_name='" + catalog_name + '\'' +
                 ", catalog_price='" + catalog_price + '\'' +
-                ", order_quantityOrdered=" + order_quantityOrdered +
-                ", order_totalPrice=" + order_totalPrice +
-                "orderId=" + orderId +
+                ", order_quantityOrdered=" + order_quantityOrdered + '\'' +
+                ", order_totalPrice=" + order_totalPrice + '\'' +
+                " orderId=" + orderId +
                 '}'+'\n';
     }
 

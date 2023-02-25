@@ -5,9 +5,7 @@ import Dao.OrderItemDao;
 import Entities.Order;
 import Entities.OrderItem;
 
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class OrderService {
     private OrderDao orderDao;
@@ -16,31 +14,6 @@ public class OrderService {
     public OrderService(OrderDao orderDao, OrderItemDao orderItemDao) {
         this.orderDao = orderDao;
         this.orderItemDao = orderItemDao;
-    }
-
-    public void getOrderByIdService() {
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the catalog_id you want to check : ");
-        int id = scanner.nextInt();
-        Order orderById = orderDao.orderById(id);
-        System.out.println(orderById);
-    }
-
-    public void readAllOrder() {
-        List<Order> orders = orderDao.orderReadAll();
-        System.out.println(orders);
-    }
-
-    public void insertOrder() {
-        Order order = createOrder();
-        orderDao.orderInsert(order);
-    }
-
-    public static Order createOrder() {
-        Order order = new Order();
-        order.setOrder_date(LocalDateTime.now());
-        return order;
     }
 
     public int createNewOrder(List<OrderItem> items) {
@@ -53,6 +26,9 @@ public class OrderService {
             orderItem.setOrderId(orderId);
             orderItemDao.orderItemInsert(orderItem);
         });
+
+        System.out.println("Your order id is : " + order.getOrder_id() + '\n' + "The total price is : " + total);
+
 
         return orderId;
     }
