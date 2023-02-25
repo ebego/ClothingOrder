@@ -2,6 +2,7 @@ package Dao;
 
 
 import Entities.OrderItem;
+import Utils.DbConnection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,7 +13,7 @@ public class OrderItemDao {
 
 
     public List<OrderItem> orderItems(int orderId){
-        SessionFactory sessionFactory = BaseDao.getFactory();
+        SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
@@ -39,7 +40,7 @@ public class OrderItemDao {
     }
 
     public void orderItemInsert(OrderItem orderItem){
-        SessionFactory sessionFactory = BaseDao.getFactory();
+        SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
         try {

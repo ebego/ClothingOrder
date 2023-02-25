@@ -1,9 +1,7 @@
 package Dao;
 
 import Entities.Catalog;
-import Enums.Category;
-import Enums.Size;
-import Services.CatalogServices;
+import Utils.DbConnection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,7 +12,7 @@ public class CatalogDao {
 
 
     public void catalogInsert(Catalog catalog){
-        SessionFactory sessionFactory = BaseDao.getFactory();
+        SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
@@ -35,7 +33,7 @@ public class CatalogDao {
         }
     }
     public void catalogUpdate(Catalog catalog){
-        SessionFactory sessionFactory = BaseDao.getFactory();
+        SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
@@ -71,7 +69,7 @@ public class CatalogDao {
         }
     }
     public void catalogDelete(Catalog catalog){
-        SessionFactory sessionFactory = BaseDao.getFactory();
+        SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
@@ -96,7 +94,7 @@ public class CatalogDao {
         }
     }
     public List<Catalog> catalogReadAll(){
-        SessionFactory sessionFactory = BaseDao.getFactory();
+        SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
@@ -123,7 +121,7 @@ public class CatalogDao {
         return null;
     }
     public Catalog catalogById(int id){
-        SessionFactory sessionFactory = BaseDao.getFactory();
+        SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 

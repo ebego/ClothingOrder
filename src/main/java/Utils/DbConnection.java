@@ -1,4 +1,4 @@
-package Dao;
+package Utils;
 
 import Entities.Catalog;
 import Entities.Order;
@@ -12,7 +12,7 @@ import org.hibernate.service.ServiceRegistry;
 import java.util.Properties;
 
 
-public class BaseDao {
+public class DbConnection {
     private static SessionFactory FACTORY = null;
 
     public static SessionFactory getFactory() {
