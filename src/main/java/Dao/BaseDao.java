@@ -33,7 +33,7 @@ public class BaseDao {
 
                         Configuration config = new Configuration();
                         config.setProperties(prop);
-                        config.addPackage("models");
+                        config.addPackage("entities");
                         config.addAnnotatedClass(Catalog.class);
                         config.addAnnotatedClass(Order.class);
                         config.addAnnotatedClass(OrderItem.class);

@@ -18,8 +18,6 @@ public class CatalogDao {
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
-
-
         try {
             tx = session.beginTransaction();
 
