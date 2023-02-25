@@ -6,23 +6,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderDao {
 
-
-    public void orderInsert(Order order){
+    public int orderInsert(Order order){
         SessionFactory sessionFactory = BaseDao.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
-
-
         try {
             tx = session.beginTransaction();
-
             session.persist(order);
-
             tx.commit();
         }
         catch (RuntimeException e) {
@@ -33,6 +29,8 @@ public class OrderDao {
         finally {
             session.close();
         }
+
+        return order.getOrder_id();
     }
     public void orderUpdate(Order order){
         SessionFactory sessionFactory = BaseDao.getFactory();

@@ -15,14 +15,14 @@ public class Order {
     private int order_id;
     private LocalDateTime order_date;
 
+    public double total;
 
 
-//    @Column(name = "catalog_id")
-//    protected int catalogId;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "catalog_id", insertable = false, updatable = false)
-//    private Catalog catalog;
+    @PrePersist
+    @Transient
+    public void setOrderDate() {
+        this.order_date = LocalDateTime.now();
+    }
 
     @Override
     public String toString() {

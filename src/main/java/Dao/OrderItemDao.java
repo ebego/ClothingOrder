@@ -10,11 +10,40 @@ import java.util.List;
 
 public class OrderItemDao {
 
-    public void orderItemInsert(OrderItem orderItem){
+
+    public List<OrderItem> orderItems(){
         SessionFactory sessionFactory = BaseDao.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
+
+
+        try {
+            tx = session.beginTransaction();
+
+            List<OrderItem> orderItems = session.createQuery("select p from OrderItem p where orderId = :orderId" )
+                    .setParameter("orderId" , 1)
+                    .getResultList();
+
+            tx.commit();
+
+            return orderItems;
+        }
+        catch (RuntimeException e) {
+            if (tx != null)
+                tx.rollback();
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public void orderItemInsert(OrderItem orderItem){
+        SessionFactory sessionFactory = BaseDao.getFactory();
+        Session session = sessionFactory.getCurrentSession();
+        Transaction tx = null;
 
 
         try {

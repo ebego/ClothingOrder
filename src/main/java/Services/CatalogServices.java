@@ -9,8 +9,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CatalogServices {
+    private CatalogDao catalogDao;
 
-    public static void useCatalogServices(){
+    public CatalogServices(CatalogDao catalogDao) {
+        this.catalogDao = catalogDao;
+    }
+
+    public void showCatalogOnConsole(){
 
         Scanner scanner = new Scanner(System.in);
         String databaseUsage = "yes";
@@ -55,35 +60,29 @@ public class CatalogServices {
 
     }
 
-    public static void getByIdService() {
+    public void getByIdService() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the catalog_id you want to check : ");
         int id = scanner.nextInt();
-        CatalogDao catalogDao = new CatalogDao();
         Catalog catalogById = catalogDao.catalogById(id);
 
         System.out.println(catalogById);
     }
 
-    public static void readAllCatalog() {
-        CatalogDao catalogDao = new CatalogDao();
+    public void readAllCatalog() {
         List<Catalog> catalogs = catalogDao.catalogReadAll();
-        System.out.println("This is our Catalog. You can chose anything you like : ");
-
-        System.out.println(catalogs);
+        System.out.println("This is our Catalog. You can chose anything you like: ");
+        catalogs.forEach(System.out::println);
     }
 
-    public static void insertCatalog() {
+    public void insertCatalog() {
         Catalog catalog = createCatalog();
-        CatalogDao catalogDao = new CatalogDao();
         catalogDao.catalogInsert(catalog);
     }
-    public static Catalog createCatalog() {
+    public Catalog createCatalog() {
         Catalog catalog = new Catalog();
 
         Scanner scanner = new Scanner(System.in);
-
-
         System.out.println("Enter Catalog Item Name");
         catalog.setCatalog_name(scanner.nextLine());
         System.out.println("Enter Catalog Item Category (Man/Woman/Kids)");
@@ -93,14 +92,11 @@ public class CatalogServices {
         System.out.println("Enter Catalog Item Price");
         catalog.setCatalog_price(scanner.nextDouble());
 
-
-
         return catalog;
     }
 
-    public static void updateCatalog() {
+    public void updateCatalog() {
         Catalog catalog = updateCatalogById();
-        CatalogDao catalogDao = new CatalogDao();
         catalogDao.catalogUpdate(catalog);
 
     }
@@ -124,9 +120,8 @@ public class CatalogServices {
         return catalog;
     }
 
-    public static void deleteCatalog() {
+    public void deleteCatalog() {
         Catalog catalog = deleteCatalogById();
-        CatalogDao catalogDao = new CatalogDao();
         catalogDao.catalogDelete(catalog);
 
     }
