@@ -37,26 +37,9 @@ public class CatalogDao {
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
 
-
-
         try {
             tx = session.beginTransaction();
-
-//            Catalog catalog = session.get(Catalog.class, id);
-//
-//            catalog.setSize(Size.LARGE);
-//            catalog.setCatalog_name("Trousers");
-//            catalog.setCatalog_price(22.49);
-//            catalog.setCategory(Category.WOMAN);
-//
-//            session.update(catalog);
-
-//            catalog = session.get(Catalog.class, id);
-
-
             session.update(catalog);
-
-
             tx.commit();
         }
         catch (RuntimeException e) {
@@ -124,8 +107,6 @@ public class CatalogDao {
         SessionFactory sessionFactory = DbConnection.getFactory();
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = null;
-
-
 
         try {
             tx = session.beginTransaction();
