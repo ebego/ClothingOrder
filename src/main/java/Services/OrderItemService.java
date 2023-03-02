@@ -8,13 +8,10 @@ import Entities.OrderItem;
 import java.util.List;
 import java.util.Scanner;
 
-public class OrderItemServices {
+public class OrderItemService {
 
-    private OrderItemDao orderItemDao;
-    private CatalogDao catalogDao;
-
-    public OrderItemServices (OrderItemDao orderItemDao , CatalogDao catalogDao) {
-        this.catalogDao = catalogDao;
+    private final OrderItemDao orderItemDao;
+    public OrderItemService(OrderItemDao orderItemDao) {
         this.orderItemDao = orderItemDao;
 
     }

@@ -8,10 +8,10 @@ import Enums.Size;
 import java.util.List;
 import java.util.Scanner;
 
-public class CatalogServices {
-    private CatalogDao catalogDao;
+public class CatalogService {
+    private final CatalogDao catalogDao;
 
-    public CatalogServices(CatalogDao catalogDao) {
+    public CatalogService(CatalogDao catalogDao) {
         this.catalogDao = catalogDao;
     }
 
@@ -52,7 +52,7 @@ public class CatalogServices {
                     System.out.println("You entered a non valid instruction, please enter a valid instruction : ");
 
             }
-            System.out.println("If you want to use our database insert yes or anything else if u want to quit.");
+            System.out.println("If you want to use our database insert yes or anything else if u want to redirect to landing page.");
             scanner.nextLine();
             databaseUsage = scanner.nextLine();
 

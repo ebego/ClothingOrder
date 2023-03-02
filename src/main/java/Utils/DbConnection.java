@@ -8,8 +8,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
-
 import java.util.Properties;
+import java.util.logging.Level;
 
 
 public class DbConnection {
@@ -21,6 +21,7 @@ public class DbConnection {
                 if (FACTORY == null) {
                     try {
                         Properties prop= new Properties();
+                        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
                         prop.setProperty(Environment.URL, "jdbc:mysql://localhost:3306/clothingorder");
                         prop.setProperty(Environment.HBM2DDL_AUTO, "update");
                         prop.setProperty(Environment.SHOW_SQL, "false");
