@@ -1,5 +1,7 @@
 package Entities;
 
+import Enums.Category;
+import Enums.Size;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +17,10 @@ public class OrderItem {
     private double catalog_price;
     private int order_quantityOrdered;
     private double order_totalPrice;
+    @Enumerated(EnumType.STRING)
+    private Size size;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     @Column(name = "order_id")
     protected int orderId;
@@ -25,14 +31,7 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return "OrderItem{" +
-//                "orderItem_id=" + orderItem_id +
-                ", catalog_name='" + catalog_name + '\'' +
-                ", catalog_price='" + catalog_price + '\'' +
-                ", order_quantityOrdered=" + order_quantityOrdered + '\'' +
-                ", order_totalPrice=" + order_totalPrice + '\'' +
-                " orderId=" + orderId +
-                '}'+'\n';
+        return String.format("Title: %s, Category: %s, Size: %s, Price: %s, Quantity Ordered: %s, Total Price: %s\n",catalog_name, category, size, catalog_price, order_quantityOrdered, order_totalPrice);
     }
 
 }

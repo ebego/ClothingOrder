@@ -52,7 +52,7 @@ public class CatalogService {
                     System.out.println("You entered a non valid instruction, please enter a valid instruction : ");
 
             }
-            System.out.println("If you want to use our database insert yes or anything else if u want to redirect to landing page.");
+            System.out.println("If you want to use our database insert \"yes\" or anything else if u want to redirect to landing page.");
             scanner.nextLine();
             databaseUsage = scanner.nextLine();
 
@@ -110,10 +110,10 @@ public class CatalogService {
         System.out.println("Enter Catalog Item Name");
         scanner.nextLine();
         catalog.setCatalog_name(scanner.nextLine());
-        System.out.println("Enter Catalog Item Category (in capital letters) ");
-        catalog.setCategory(Category.valueOf(scanner.nextLine()));
-        System.out.println("Enter Catalog Item Size (in capital letters) ");
-        catalog.setSize(Size.valueOf(scanner.nextLine()));
+        System.out.println("Enter Catalog Item Category (Man/Woman/Kids)");
+        catalog.setCategory(Category.valueOf(scanner.nextLine().toUpperCase()));
+        System.out.println("Enter Catalog Item Size (Extralarge/Large/Medium/Small/Extrasmall) ");
+        catalog.setSize(Size.valueOf(scanner.nextLine().toUpperCase()));
         System.out.println("Enter Catalog Item Price");
         catalog.setCatalog_price(scanner.nextDouble());
 

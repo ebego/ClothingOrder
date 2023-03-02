@@ -26,10 +26,12 @@ public class OrderItemService {
         OrderItem orderItem = new OrderItem();
         CatalogDao catalogDao = new CatalogDao();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter dhe Catalog_Id of the item you want to purchase");
+        System.out.println("Enter dhe Catalog_Id of the item you want to purchase : ");
         Catalog catalog = catalogDao.catalogById(scanner.nextInt());
-        System.out.println("Enter how many such items do you want to buy");
+        System.out.println("Enter how many such items do you want to buy : ");
         orderItem.setOrder_quantityOrdered(scanner.nextInt());
+        orderItem.setSize(catalog.getSize());
+        orderItem.setCategory(catalog.getCategory());
         orderItem.setCatalog_name(catalog.getCatalog_name());
         orderItem.setCatalog_price(catalog.getCatalog_price());
         orderItem.setOrder_totalPrice((orderItem.getCatalog_price() * orderItem.getOrder_quantityOrdered()));

@@ -26,9 +26,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "order_id=" + order_id +
-                ", order_date='" + order_date + '\'' +
-                '}' + '\n';
+        return String.format("Id: %s, Order Date: %s", order_id, order_date);
     }
 }

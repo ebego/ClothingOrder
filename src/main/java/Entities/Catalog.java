@@ -22,6 +22,6 @@ public class Catalog {
 
     @Override
     public String toString() {
-        return String.format("Id: %s Title: %s, Price: %s", catalog_id, catalog_name, catalog_price);
+        return String.format("Id: %s, Title: %s, Category: %s, Size: %s, Price: %s", catalog_id, catalog_name, category, size, catalog_price);
     }
 }

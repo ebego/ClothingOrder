@@ -35,7 +35,7 @@ public class TerminalController {
                 while(passwordTries>0) {
                     System.out.println("Enter password please : "); // password is 123 for example
                     checkPassword = scanner.nextLine();
-                    if (checkPassword.equalsIgnoreCase("123")) {
+                    if (checkPassword.equals("123")) {
                         adminInterface();
                         break;
                     } else {
@@ -68,7 +68,7 @@ public class TerminalController {
         Scanner scanner = new Scanner(System.in);
         catalogService.readAllCatalog();
 
-        System.out.println("Pres yes if you want to purchase any item or anything else if you want to go to the landing page : ");
+        System.out.println("Pres \"yes\" if you want to purchase any item or anything else if you want to go to the landing page : ");
         String buyItems = scanner.nextLine();
         if (buyItems.equalsIgnoreCase("yes")) {
 
@@ -77,24 +77,24 @@ public class TerminalController {
             while (addToOrder.equalsIgnoreCase("yes")) {
                 items.add(OrderItemService.readOrderItemFromConsole());
 
-                System.out.println("Do you want to add Items to your order? Press yes to continue or anything else to stop");
+                System.out.println("Do you want to add Items to your order? Press \"yes\" to continue or anything else to stop adding items : ");
                 addToOrder = scanner.nextLine();
             }
 
             System.out.println("The Items you purchased are : ");
 
             for (OrderItem item : items){
-                System.out.println(item);
+                System.out.print(item);
             }
 
-            System.out.println("Do you confirm your choice? Pres yes to confirm or anything else to cancel : ");
+            System.out.println("Do you confirm your choice? Pres \"yes\" to confirm or anything else to cancel : ");
             String confirmation = scanner.nextLine();
 
             if (confirmation.equalsIgnoreCase("yes")) {
                 orderService.createNewOrder(items);
-                System.out.println("Congratulations on your order ");
+                System.out.println("Congratulations on your purchase!");
 
-                System.out.println("If you still want to see your order press yes or anything else to go to the landing page : ");
+                System.out.println("If you still want to see your order press \"yes\" or anything else to go to the landing page : ");
                 String checkOrder = scanner.nextLine();
                 if (checkOrder.equalsIgnoreCase("yes")){
                     System.out.println("Enter the id of your order : ");
